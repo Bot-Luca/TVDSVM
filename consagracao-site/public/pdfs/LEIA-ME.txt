@@ -1,0 +1,18 @@
+COMO ADICIONAR SEUS PDFs
+=========================
+
+Coloque cada PDF exatamente nesta pasta e com este nome (o site detecta sozinho):
+
+pdfs/tratado/semana-1.pdf
+pdfs/tratado/semana-2.pdf
+pdfs/tratado/semana-3.pdf
+pdfs/tratado/semana-4.pdf
+
+pdfs/exercicios/dia-01.pdf
+pdfs/exercicios/dia-02.pdf
+pdfs/exercicios/dia-03.pdf
+... (assim por diante, sempre com 2 dígitos)
+pdfs/exercicios/dia-34.pdf
+
+Não precisa editar nenhum código. Assim que o arquivo estiver aqui com o
+nome certo, ele aparece automaticamente no site na hora certa.
