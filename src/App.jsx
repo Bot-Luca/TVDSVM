@@ -453,6 +453,7 @@ function PhaseCard({ dev, occ, status, onOpenReading, onOpenExercise, done, onTo
   }
 
   if (status.phase === "exercises") {
+    const percent = Math.round((status.dayNum / status.total) * 100);
     return (
       <div className="hero-card">
         <p className="eyebrow">
@@ -465,11 +466,14 @@ function PhaseCard({ dev, occ, status, onOpenReading, onOpenExercise, done, onTo
         </button>
         <DoneToggle done={done} onToggle={onToggleDone} label="Concluí o exercício de hoje" />
         <div className="progress-track">
-          <div
-            className="progress-fill"
-            style={{ width: `${Math.min(100, (status.dayNum / status.total) * 100)}%` }}
-          />
+          <div className="progress-fill" style={{ width: `${Math.min(100, percent)}%` }} />
         </div>
+        {/* Contador junto da barra — uma barra de progresso sozinha, sem
+            número, não diz nada por si só (nem "quanto falta" nem "que dia
+            é hoje"), então sempre mostramos os dois aqui embaixo dela. */}
+        <p className="progress-caption">
+          Dia {status.dayNum} de {status.total} · {percent}% concluído
+        </p>
       </div>
     );
   }
@@ -1177,6 +1181,12 @@ function Styles() {
 
       * { box-sizing: border-box; }
 
+      /* Remove a margem/borda branca padrão do navegador ao redor da
+         página inteira (o index.html já faz isso antes do React carregar;
+         isto aqui garante o mesmo resultado mesmo se o app for embutido
+         de outro jeito, sem aquele <style> do index.html). */
+      html, body, #root { margin: 0; padding: 0; height: 100%; background: #0e1830; }
+
       .app-shell {
         height: 100vh;
         height: 100dvh; /* dvh evita "pulo" quando a barra de endereço do celular aparece/some */
@@ -1403,6 +1413,11 @@ function Styles() {
         overflow: hidden;
       }
       .progress-fill { height: 100%; background: var(--gold); border-radius: 4px; }
+      .progress-caption {
+        margin: 8px 0 0;
+        font-size: 12.5px;
+        color: var(--ink-muted);
+      }
 
       /* Calendário */
       .cal-card {
